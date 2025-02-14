@@ -84,8 +84,8 @@ jobs:
 
       - name: Image Tags
         run: |
-          echo "IMAGE_TAG=ghcr.io/intrastellarltd/django-app-ci-pipeline:${{ github.sha }}" >> $GITHUB_ENV
-          echo "IMAGE_TAG_LATEST=ghcr.io/intrastellarltd/django-app-ci-pipeline:latest" >> $GITHUB_ENV
+          echo "IMAGE_TAG=ghcr.io/hassanmunir/django-app:${{ github.sha }}" >> $GITHUB_ENV
+          echo "IMAGE_TAG_LATEST=ghcr.io/hassanmunir/django-app:latest" >> $GITHUB_ENV
 
       - name: Build Docker Image
         run: |
@@ -94,12 +94,12 @@ jobs:
       - name: Scan image
         uses: anchore/scan-action@v6
         with:
-          image: "ghcr.io/intrastellarltd/django-app-ci-pipeline:latest"
+          image: "ghcr.io/hassanmunir/django-app:latest"
           fail-build: false
   
       - uses: anchore/sbom-action@v0
         with:
-          image: "ghcr.io/intrastellarltd/django-app-ci-pipeline:latest"
+          image: "ghcr.io/hassanmunir/django-app:latest"
 
       - name: Push Docker Image to GHCR
         run: |
